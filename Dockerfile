@@ -1,5 +1,5 @@
 # ---------- Build stage ----------
-FROM maven:3.9.6-eclipse-temurin-17 AS build
+FROM maven:3.9.6-eclipse-temurin-22 AS build
 WORKDIR /app
 
 # Cache deps first
@@ -11,7 +11,7 @@ COPY src ./src
 RUN mvn -B clean package -DskipTests
 
 # ---------- Runtime stage ----------
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:22-jre
 WORKDIR /app
 
 # copy the fat jar produced by Spring Boot
